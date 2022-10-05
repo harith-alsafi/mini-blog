@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import Navbar from './Navbar';
+import Home from './Home';
 
+// this is JSX template which is the converted by bable to HTML 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <div className="content">
+        <Home/>
+      </div>
     </div>
   );
 }
 
+// this exports our function so other apps use it  
 export default App;
