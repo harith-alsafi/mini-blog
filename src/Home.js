@@ -9,7 +9,7 @@ const Home = () => {
         {/* Check errors */}
         {error && <div>{error}</div>}
         {/* Loading the info */}
-        {isLoading && <div>Loading</div>}
+        {isLoading && <div>Loading...</div>}
         {/* conditional check (so if blogs is null we won't evaluate the template ) */}
         {blogs && <BlogList blogs={blogs} title="All Blogs"/>}
         </div>
