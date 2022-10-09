@@ -6,6 +6,7 @@ const Create = () => {
     const [author, setAuthor] = useState('');
     const [body, setBody] = useState('');
     const [isLoading, setIsLoading] = useState(false); // loading functionality 
+    const [error, setError] = useState(null);
     const history = useHistory();
 
     const handleSubmit = (e) => {
@@ -21,10 +22,17 @@ const Create = () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(blog)
         })
-        .then(()=>{
+        .then((res)=>{
+            if(!res.ok){
+                throw Error("Couldn't access the data, please reload and try again");
+            }
             setIsLoading(false);
             // history.go(-1); // go back
             history.push('/'); // go to home page 
+        })
+        .catch((err)=>{
+            setError(err.message);
+            setIsLoading(false);
         });
     }
 
@@ -58,8 +66,9 @@ const Create = () => {
                 </textarea>
 
                 {/* Show loading */}
-                {!isLoading && <button>Add Blog</button>}
+                {!isLoading && !error && <button>Add Blog</button>}
                 {isLoading && <button>Adding Blog...</button>}
+                {error && <p>{error}</p>} 
             </form>
         </div>
     );
