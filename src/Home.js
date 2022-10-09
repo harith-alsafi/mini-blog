@@ -3,11 +3,7 @@ import BlogList from "./BlogList";
 
 const Home = () => {
     // list of blogs storage 
-    const [blogs, setBlogs] = useState([
-        {id: 0, title: "Blog 1" , author: "Harith", body: "This is blog 1"},
-        {id: 1, title: "Blog 2" , author: "Harith", body: "This is blog 2"},
-        {id: 2, title: "Blog 3" , author: "Harith", body: "This is blog 3"}
-    ]);
+    const [blogs, setBlogs] = useState(null);
 
     const handleDelete = (id) => {
         const newBlogs = blogs.filter(blog => blog.id !== id);
@@ -16,12 +12,19 @@ const Home = () => {
 
     // this function runs for every render 
     useEffect(() => {
-
+        // fetch is async so using .then means we await for it 
+        fetch("https://mini-blog-db.herokuapp.com/blogs").then(res => {
+            return res.json(); // extract response as json
+        }).then((data) => {
+            setBlogs(data); // set the data 
+            console.log(data);
+        });
     }, []); // when adding empty dependcy array it only runs once at the begining 
 
     return ( 
         <div className="home">
-        <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>
+        {/* conditional check (so if blogs is null we won't evaluate the template ) */}
+        {blogs && <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>}
         </div>
     );
 }
