@@ -9,8 +9,10 @@ const useFetch = (url) =>{
 
     // this function runs for every render 
     useEffect(() => {
+        const abortCont = new AbortController();
+
         // fetch is async so using .then means we await for it 
-        fetch(url)
+        fetch(url, {signal: abortCont.signal})
         .then(res => {
             if(!res.ok){
                 throw Error("Couldn't fetch the data");
@@ -23,9 +25,14 @@ const useFetch = (url) =>{
             setError(null);
         })
         .catch(err => { // catching any network error 
-            setError(err.message);
-            setIsLoading(false);
+            if(err.name !== 'AbortError'){
+                setError(err.message);
+                setIsLoading(false);
+            }
         });
+        // we need to add a cleanup return function 
+        // so when we switch pages it stops the fetch 
+        return () => abortCont.abort();
     }, [url]); // when adding empty dependcy array it only runs once at the begining 
 
     return {data, isLoading, error};

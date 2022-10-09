@@ -22,14 +22,18 @@
 .navbar .links {
   margin-left: auto; /* will shoot them over to the right as parent is flex */
 }
+
 .navbar a {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
+  border: 1px solid #f1356d;
+  border-radius: 8px;
 }
 .navbar a:hover {
   color: #f1356d;
 }
+
 /* surrounds home component */
 .content {
   max-width: 600px;
