@@ -18,7 +18,7 @@ const BlogDetails = () => {
             if(!res.ok){
                 throw Error("Couldn't access the data, please reload and try again");
             }
-            history.push('/'); // go to home page 
+            history.push('/mini-blog/'); // go to home page 
         })
         .catch((err) => {
             setDeleteError(err.message);

@@ -16,21 +16,21 @@ function App() {
         <div className="content">
           <Switch> 
             
-            <Route exact path="/"> 
+            <Route exact path="/mini-blog/"> 
               <Home/>
             </Route>
 
-            <Route path="/create"> 
+            <Route path="/mini-blog/create"> 
               <Create/>
             </Route>
 
             {/* Route the blog ID (:id is a parameter) */}
-            <Route path="/blogs/:id"> 
+            <Route path="/mini-blog/blogs/:id"> 
               <BlogDetails/>
             </Route>
 
             {/* Any other route */}
-            <Route path="*">
+            <Route path="/mini-blog/*">
               <NotFound/>
             </Route>
 

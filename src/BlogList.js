@@ -8,7 +8,7 @@ const BlogList = ({blogs, title, handleDelete}) => {
             {/* We use {key} in react so react can keep track of the items */ }
             {blogs.map((blog) => (
             <div className="blog-preview" key={blog.id}>
-                <Link to={`/blogs/${blog.id}`}>
+                <Link to={`/mini-blog/blogs/${blog.id}`}>
                     <h2>{blog.title}</h2>
                     <p> Written by: {blog.author}</p>
                 </Link>

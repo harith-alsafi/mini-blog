@@ -28,7 +28,7 @@ const Create = () => {
             }
             setIsLoading(false);
             // history.go(-1); // go back
-            history.push('/'); // go to home page 
+            history.push('/mini-blog/'); // go to home page 
         })
         .catch((err)=>{
             setError(err.message);
